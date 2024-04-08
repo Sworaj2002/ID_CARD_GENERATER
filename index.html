@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID Card Generator</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>ID Card Generator</h1>
+    <div>
+        <label for="collegeName">College Name:</label>
+        <input type="text" id="collegeName" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+        <label for="branch">Branch:</label>
+        <input type="text" id="branch" required><br><br>
+        <label for="passoutYear">Passout Year:</label>
+        <input type="number" id="passoutYear" required><br><br>
+        <label for="bloodGroup">Blood Group:</label>
+        <input type="text" id="bloodGroup" required><br><br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required><br><br>
+        <label for="photo">Photo:</label>
+        <input type="file" id="photo" accept="image/*" required><br><br>
+        <button onclick="generateIDCard()">Generate ID Card</button>
+    </div>
+
+    <div id="idCardContainer" style="display: none;">
+        <div id="idCard">
+            <h2 id="idCollegeName"></h2>
+            <img id="idPhoto" src="" alt="Photo"><br>
+            <p id="idName"></p>
+            <p id="idBranch"></p>
+            <p id="idPassoutYear"></p>
+            <p id="idBloodGroup"></p>
+            <p id="idDOB"></p>
+            <a id="downloadBtn" download="ID_Card.png" href="#" onclick="downloadIDCard()">Download ID Card</a>
+        </div>
+    </div>
+
+    <script>
+        function generateIDCard() {
+            var collegeName = document.getElementById("collegeName").value;
+            var name = document.getElementById("name").value;
+            var branch = document.getElementById("branch").value;
+            var passoutYear = document.getElementById("passoutYear").value;
+            var bloodGroup = document.getElementById("bloodGroup").value;
+            var dob = document.getElementById("dob").value;
+            var photo = document.getElementById("photo").files[0];
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("idCollegeName").innerText = "College Name: " + collegeName;
+                document.getElementById("idPhoto").src = e.target.result;
+                document.getElementById("idName").innerText = "Name: " + name;
+                document.getElementById("idBranch").innerText = "Branch: " + branch;
+                document.getElementById("idPassoutYear").innerText = "Passout Year: " + passoutYear;
+                document.getElementById("idBloodGroup").innerText = "Blood Group: " + bloodGroup;
+                document.getElementById("idDOB").innerText = "DOB: " + dob;
+
+                document.getElementById("idCardContainer").style.display = "block";
+            };
+            reader.readAsDataURL(photo);
+        }
+
+        function downloadIDCard() {
+            var container = document.getElementById("idCardContainer");
+
+            // Use html2canvas to capture the content of the container as a canvas
+            html2canvas(container).then(canvas => {
+                // Convert canvas to blob
+                canvas.toBlob(function(blob) {
+                    // Create a temporary link element
+                    var link = document.createElement('a');
+                    link.download = 'ID_Card.jpg'; // Change the file extension to .jpg
+
+                    // Create a URL for the blob
+                    var url = URL.createObjectURL(blob);
+
+                    // Set href attribute to the blob URL
+                    link.href = url;
+
+                    // Simulate click on the link to trigger download
+                    link.click();
+
+                    // Clean up by revoking the URL object
+                    URL.revokeObjectURL(url);
+                }, 'image/jpeg'); // Specify 'image/jpeg' for JPEG format
+            });
+        }
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</body>
+</html>

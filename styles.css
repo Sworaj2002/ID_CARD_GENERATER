@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2; /* Set background color for the entire page */
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff; /* Set background color for the form */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#idCardContainer {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#idCard {
+    padding: 20px;
+    background-color: #add8e6; /* Set background color for the ID card to light blue */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+#idPhoto {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+}
